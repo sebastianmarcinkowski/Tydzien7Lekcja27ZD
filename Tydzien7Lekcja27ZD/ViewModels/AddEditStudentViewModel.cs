@@ -2,12 +2,15 @@
 using System.Windows;
 using System.Windows.Input;
 using Tydzien7Lekcja27ZD.Commans;
+using Tydzien7Lekcja27ZD.Models.Domains;
 using Tydzien7Lekcja27ZD.Models.Wrappers;
 
 namespace Tydzien7Lekcja27ZD.ViewModels
 {
     public class AddEditStudentViewModel : BaseViewModel
     {
+        private Repository _repository = new Repository();
+
         public AddEditStudentViewModel(StudentWrapper student = null)
         {
             ConfirmCommand = new RelayCommand(Confirm);
@@ -62,9 +65,9 @@ namespace Tydzien7Lekcja27ZD.ViewModels
             }
         }
 
-        private ObservableCollection<GroupWrapper> _groups;
+        private ObservableCollection<Group> _groups;
 
-        public ObservableCollection<GroupWrapper> Groups
+        public ObservableCollection<Group> Groups
         {
             get { return _groups; }
             set
@@ -89,12 +92,12 @@ namespace Tydzien7Lekcja27ZD.ViewModels
 
         private void AddStudent()
         {
-            // DB.
+            _repository.AddStudent(Student);
         }
 
         private void UpdateStudent()
         {
-            // DB.
+            _repository.UpdateStudent(Student);
         }
 
         private void Close(object obj)
@@ -109,14 +112,12 @@ namespace Tydzien7Lekcja27ZD.ViewModels
 
         private void InitGroups()
         {
-            Groups = new ObservableCollection<GroupWrapper>
-            {
-                new GroupWrapper { Id = 0, Name = "-- brak --" },
-                new GroupWrapper { Id = 1, Name = "1A" },
-                new GroupWrapper { Id = 2, Name = "2A" }
-            };
+            var groups = _repository.GetGroups();
+            groups.Insert(0, new Group { Id = 0, Name = "-- brak --" });
 
-            Student.Group.Id = 0;
+            Groups = new ObservableCollection<Group>(groups);
+
+            Student.Group.Id = Student.Group.Id;
         }
     }
 }

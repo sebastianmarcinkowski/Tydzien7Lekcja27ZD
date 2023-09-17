@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Tydzien7Lekcja27ZD.Commans;
+using Tydzien7Lekcja27ZD.Models.Domains;
 using Tydzien7Lekcja27ZD.Models.Wrappers;
 using Tydzien7Lekcja27ZD.Views;
 
@@ -13,6 +14,8 @@ namespace Tydzien7Lekcja27ZD.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
+        private Repository _repository = new Repository();
+
         public MainViewModel()
         {
             AddStudentCommand = new RelayCommand(AddEditStudent);
@@ -65,9 +68,9 @@ namespace Tydzien7Lekcja27ZD.ViewModels
             }
         }
 
-        private ObservableCollection<GroupWrapper> _groups;
+        private ObservableCollection<Group> _groups;
 
-        public ObservableCollection<GroupWrapper> Groups
+        public ObservableCollection<Group> Groups
         {
             get { return _groups; }
             set
@@ -104,7 +107,7 @@ namespace Tydzien7Lekcja27ZD.ViewModels
             if (dialog != MessageDialogResult.Affirmative)
                 return;
 
-            // Usuwanie ucznia z DB.
+            _repository.DeleteStudent(SelectedStudent.Id);
 
             RefreshDiary();
         }
@@ -121,31 +124,15 @@ namespace Tydzien7Lekcja27ZD.ViewModels
 
         private void RefreshDiary()
         {
-            Students = new ObservableCollection<StudentWrapper>
-            {
-                new StudentWrapper
-                {
-                    FirstName = "Sebastian",
-                    LastName = "Marcinkowski",
-                    Group = new GroupWrapper { Id = 1 }
-                },
-                new StudentWrapper
-                {
-                    FirstName = "Sara",
-                    LastName = "Marcinkowska",
-                    Group = new GroupWrapper { Id = 2 }
-                }
-            };
+            Students = new ObservableCollection<StudentWrapper>(_repository.GetStudents(SelectedGroupId));
         }
 
         private void InitGroups()
         {
-            Groups = new ObservableCollection<GroupWrapper>
-            {
-                new GroupWrapper { Id = 0, Name = "Wszystkie" },
-                new GroupWrapper { Id = 1, Name = "1A" },
-                new GroupWrapper { Id = 2, Name = "2A" }
-            };
+            var groups = _repository.GetGroups();
+            groups.Insert(0, new Group { Id = 0, Name = "Wszystkie" });
+
+            Groups = new ObservableCollection<Group>(groups);
 
             SelectedGroupId = 0;
         }
