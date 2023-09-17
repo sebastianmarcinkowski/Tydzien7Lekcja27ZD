@@ -1,10 +1,10 @@
-﻿namespace Tydzien7Lekcja27ZD.Models
+﻿namespace Tydzien7Lekcja27ZD.Models.Wrappers
 {
-    public class Student
+    public class StudentWrapper
     {
-        public Student()
+        public StudentWrapper()
         {
-            Group = new Group();
+            Group = new GroupWrapper();
         }
 
         public int Id { get; set; }
@@ -17,6 +17,6 @@
         public string PolishLang { get; set; }
         public string ForeignLang { get; set; }
         public bool Activities { get; set; }
-        public Group Group { get; set; }
+        public GroupWrapper Group { get; set; }
     }
 }

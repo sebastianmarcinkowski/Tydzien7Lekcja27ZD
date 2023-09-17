@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Tydzien7Lekcja27ZD.Commans;
-using Tydzien7Lekcja27ZD.Models;
+using Tydzien7Lekcja27ZD.Models.Wrappers;
 using Tydzien7Lekcja27ZD.Views;
 
 namespace Tydzien7Lekcja27ZD.ViewModels
@@ -29,9 +29,9 @@ namespace Tydzien7Lekcja27ZD.ViewModels
         public ICommand EditStudentCommand { get; set; }
         public ICommand DeleteStudentCommand { get; set; }
 
-        private Student _selectedStudent;
+        private StudentWrapper _selectedStudent;
 
-        public Student SelectedStudent
+        public StudentWrapper SelectedStudent
         {
             get { return _selectedStudent; }
             set
@@ -41,9 +41,9 @@ namespace Tydzien7Lekcja27ZD.ViewModels
             }
         }
 
-        private ObservableCollection<Student> _students;
+        private ObservableCollection<StudentWrapper> _students;
 
-        public ObservableCollection<Student> Students
+        public ObservableCollection<StudentWrapper> Students
         {
             get { return _students; }
             set
@@ -65,9 +65,9 @@ namespace Tydzien7Lekcja27ZD.ViewModels
             }
         }
 
-        private ObservableCollection<Group> _groups;
+        private ObservableCollection<GroupWrapper> _groups;
 
-        public ObservableCollection<Group> Groups
+        public ObservableCollection<GroupWrapper> Groups
         {
             get { return _groups; }
             set
@@ -79,7 +79,7 @@ namespace Tydzien7Lekcja27ZD.ViewModels
 
         private void AddEditStudent(object obj)
         {
-            var addEditStudentWindow = new AddEditStudentView(obj as Student);
+            var addEditStudentWindow = new AddEditStudentView(obj as StudentWrapper);
             addEditStudentWindow.Closed += AddEditStudentWindowOnClosed;
 
             addEditStudentWindow.ShowDialog();
@@ -121,30 +121,30 @@ namespace Tydzien7Lekcja27ZD.ViewModels
 
         private void RefreshDiary()
         {
-            Students = new ObservableCollection<Student>
+            Students = new ObservableCollection<StudentWrapper>
             {
-                new Student
+                new StudentWrapper
                 {
                     FirstName = "Sebastian",
                     LastName = "Marcinkowski",
-                    Group = new Group { Id = 1 }
+                    Group = new GroupWrapper { Id = 1 }
                 },
-                new Student
+                new StudentWrapper
                 {
                     FirstName = "Sara",
                     LastName = "Marcinkowska",
-                    Group = new Group { Id = 2 }
+                    Group = new GroupWrapper { Id = 2 }
                 }
             };
         }
 
         private void InitGroups()
         {
-            Groups = new ObservableCollection<Group>
+            Groups = new ObservableCollection<GroupWrapper>
             {
-                new Group { Id = 0, Name = "Wszystkie" },
-                new Group { Id = 1, Name = "1A" },
-                new Group { Id = 2, Name = "2A" }
+                new GroupWrapper { Id = 0, Name = "Wszystkie" },
+                new GroupWrapper { Id = 1, Name = "1A" },
+                new GroupWrapper { Id = 2, Name = "2A" }
             };
 
             SelectedGroupId = 0;
