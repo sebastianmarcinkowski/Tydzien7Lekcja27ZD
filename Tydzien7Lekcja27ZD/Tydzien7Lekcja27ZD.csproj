@@ -87,6 +87,15 @@
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="Commans\AsyncRelayCommand.cs" />
     <Compile Include="Commans\RelayCommand.cs" />
+    <Compile Include="Migrations\202309171554371_InitialCreate.cs" />
+    <Compile Include="Migrations\202309171554371_InitialCreate.Designer.cs">
+      <DependentUpon>202309171554371_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202309171610263_SetFirstAndLastNameMaxLengthAndRequired.cs" />
+    <Compile Include="Migrations\202309171610263_SetFirstAndLastNameMaxLengthAndRequired.Designer.cs">
+      <DependentUpon>202309171610263_SetFirstAndLastNameMaxLengthAndRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Configurations\GroupConfiguration.cs" />
     <Compile Include="Models\Configurations\RatingConfiguration.cs" />
     <Compile Include="Models\Configurations\StudentConfiguration.cs" />
@@ -125,6 +134,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\202309171554371_InitialCreate.resx">
+      <DependentUpon>202309171554371_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202309171610263_SetFirstAndLastNameMaxLengthAndRequired.resx">
+      <DependentUpon>202309171610263_SetFirstAndLastNameMaxLengthAndRequired.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
