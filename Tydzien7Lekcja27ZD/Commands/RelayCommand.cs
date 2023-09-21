@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace Tydzien7Lekcja27ZD.Commans
+namespace Tydzien7Lekcja27ZD.Commands
 {
     public class RelayCommand : ICommand
     {

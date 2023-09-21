@@ -1,6 +1,5 @@
 ﻿namespace Tydzien7Lekcja27ZD.Properties
 {
-
     internal sealed partial class Settings
     {
         public static string ConnectionString;

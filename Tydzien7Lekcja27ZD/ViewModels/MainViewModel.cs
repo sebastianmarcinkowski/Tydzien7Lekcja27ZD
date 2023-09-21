@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using Tydzien7Lekcja27ZD.Commans;
+using Tydzien7Lekcja27ZD.Commands;
 using Tydzien7Lekcja27ZD.Models.Domains;
 using Tydzien7Lekcja27ZD.Models.Wrappers;
 using Tydzien7Lekcja27ZD.Properties;

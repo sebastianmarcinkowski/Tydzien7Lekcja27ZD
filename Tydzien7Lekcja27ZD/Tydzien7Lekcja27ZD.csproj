@@ -92,8 +92,8 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="ApplicationDbContext.cs" />
-    <Compile Include="Commans\AsyncRelayCommand.cs" />
-    <Compile Include="Commans\RelayCommand.cs" />
+    <Compile Include="Commands\AsyncRelayCommand.cs" />
+    <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Migrations\202309171554371_InitialCreate.cs" />
     <Compile Include="Migrations\202309171554371_InitialCreate.Designer.cs">
       <DependentUpon>202309171554371_InitialCreate.cs</DependentUpon>

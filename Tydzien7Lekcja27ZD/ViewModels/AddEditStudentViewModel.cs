@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
-using Tydzien7Lekcja27ZD.Commans;
+using Tydzien7Lekcja27ZD.Commands;
 using Tydzien7Lekcja27ZD.Models.Domains;
 using Tydzien7Lekcja27ZD.Models.Wrappers;
 
@@ -82,7 +82,7 @@ namespace Tydzien7Lekcja27ZD.ViewModels
 
         private void Confirm(object obj)
         {
-            if(!Student.IsValid)
+            if (!Student.IsValid)
                 return;
 
             if (!IsUpdate)

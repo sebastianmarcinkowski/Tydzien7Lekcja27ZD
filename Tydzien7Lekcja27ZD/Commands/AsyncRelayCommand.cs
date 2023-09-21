@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Tydzien7Lekcja27ZD.Commans
+namespace Tydzien7Lekcja27ZD.Commands
 {
     public class AsyncRelayCommand : ICommand
     {
