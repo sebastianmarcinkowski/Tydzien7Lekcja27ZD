@@ -1,4 +1,5 @@
 using System.Data.Entity;
+using System.Windows;
 using Tydzien7Lekcja27ZD.Models.Configurations;
 using Tydzien7Lekcja27ZD.Models.Domains;
 using Tydzien7Lekcja27ZD.Properties;

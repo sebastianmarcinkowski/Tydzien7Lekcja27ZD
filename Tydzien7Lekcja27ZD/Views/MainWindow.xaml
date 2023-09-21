@@ -14,7 +14,9 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Orientation="Horizontal">
+        <StackPanel Grid.Row="0"
+                    Orientation="Horizontal"
+                    >
 
             <Button
                 Height="25"
@@ -59,6 +61,21 @@
                 Command="{Binding RefreshStudentsCommand}"
                 Content="Odśwież"
                 />
+
+        </StackPanel>
+
+        <StackPanel Grid.Row="0"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    >
+
+            <Button
+                Height="25"
+                Width="150"
+                Margin="5"
+                Command="{Binding DBSettingsCommand}"
+                Content="Ustawienia bazy danych"
+            />
 
         </StackPanel>
 

@@ -8,6 +8,7 @@ using System.Windows.Input;
 using Tydzien7Lekcja27ZD.Commans;
 using Tydzien7Lekcja27ZD.Models.Domains;
 using Tydzien7Lekcja27ZD.Models.Wrappers;
+using Tydzien7Lekcja27ZD.Properties;
 using Tydzien7Lekcja27ZD.Views;
 
 namespace Tydzien7Lekcja27ZD.ViewModels
@@ -16,12 +17,15 @@ namespace Tydzien7Lekcja27ZD.ViewModels
     {
         private Repository _repository = new Repository();
 
+        public static bool IsDBSettingsChanged;
+
         public MainViewModel()
         {
             AddStudentCommand = new RelayCommand(AddEditStudent);
             EditStudentCommand = new RelayCommand(AddEditStudent, CanEditDeleteStudent);
             DeleteStudentCommand = new AsyncRelayCommand(DeleteStudent, CanEditDeleteStudent);
             RefreshStudentsCommand = new RelayCommand(RefreshStudents);
+            DBSettingsCommand = new RelayCommand(DBSettings);
 
             RefreshDiary();
             InitGroups();
@@ -31,6 +35,7 @@ namespace Tydzien7Lekcja27ZD.ViewModels
         public ICommand AddStudentCommand { get; set; }
         public ICommand EditStudentCommand { get; set; }
         public ICommand DeleteStudentCommand { get; set; }
+        public ICommand DBSettingsCommand { get; set; }
 
         private StudentWrapper _selectedStudent;
 
@@ -80,14 +85,32 @@ namespace Tydzien7Lekcja27ZD.ViewModels
             }
         }
 
-        private void AddEditStudent(object obj)
+        private void DBSettings(object obj)
         {
-            var addEditStudentWindow = new AddEditStudentView(obj as StudentWrapper);
-            addEditStudentWindow.Closed += AddEditStudentWindowOnClosed;
+            var dbSettingsWindow = new DBSettingsView();
 
-            addEditStudentWindow.ShowDialog();
+            dbSettingsWindow.Closed += DbSettingsWindow_Closed;
 
-            addEditStudentWindow.Closed -= AddEditStudentWindowOnClosed;
+            dbSettingsWindow.ShowDialog();
+
+            dbSettingsWindow.Closed -= DbSettingsWindow_Closed;
+
+        }
+
+        private async void DbSettingsWindow_Closed(object sender, EventArgs e)
+        {
+            if (IsDBSettingsChanged)
+            {
+                var metroWindow = Application.Current.MainWindow as MetroWindow;
+                await metroWindow.ShowMessageAsync(
+                    "Ustawienia zostały zapisane",
+                    $"Aplikacja zostanie uruchomiona ponownie.",
+                    MessageDialogStyle.Affirmative
+                );
+
+                System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
+                Application.Current.Shutdown();
+            }
         }
 
         private void AddEditStudentWindowOnClosed(object sender, EventArgs e)
@@ -115,6 +138,16 @@ namespace Tydzien7Lekcja27ZD.ViewModels
         private bool CanEditDeleteStudent(object obj)
         {
             return SelectedStudent != null;
+        }
+
+        private void AddEditStudent(object obj)
+        {
+            var addEditStudentWindow = new AddEditStudentView(obj as StudentWrapper);
+            addEditStudentWindow.Closed += AddEditStudentWindowOnClosed;
+
+            addEditStudentWindow.ShowDialog();
+
+            addEditStudentWindow.Closed -= AddEditStudentWindowOnClosed;
         }
 
         private void RefreshStudents(object obj)
