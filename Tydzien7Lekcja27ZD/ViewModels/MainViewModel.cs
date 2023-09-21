@@ -2,6 +2,7 @@
 using MahApps.Metro.Controls.Dialogs;
 using System;
 using System.Collections.ObjectModel;
+using System.Data.SqlClient;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -21,6 +22,8 @@ namespace Tydzien7Lekcja27ZD.ViewModels
 
         public MainViewModel()
         {
+            ConnectionStringTest();
+
             AddStudentCommand = new RelayCommand(AddEditStudent);
             EditStudentCommand = new RelayCommand(AddEditStudent, CanEditDeleteStudent);
             DeleteStudentCommand = new AsyncRelayCommand(DeleteStudent, CanEditDeleteStudent);
@@ -84,6 +87,69 @@ namespace Tydzien7Lekcja27ZD.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        private void ConnectionStringTest()
+        {
+            string testConnectionString =
+                $"Server={Settings.Default.DBServerName}\\{Settings.Default.DBInstanceName};" +
+                $"Database={Settings.Default.DBName};" +
+                $"User Id={Settings.Default.DBUser};" +
+                $"Password={Settings.Default.DBPassword}";
+
+            try
+            {
+                using (SqlConnection testConnection = new SqlConnection(testConnectionString))
+                {
+                    testConnection.Open();
+                }
+            }
+            catch (System.Data.SqlClient.SqlException)
+            {
+                if (Task.Run(() =>
+                        MessageBox.Show(
+                            "Nie można połączyć się z bazą danych, czy chcesz teraz poprawić ustawienia?",
+                            "Brak połączenia z bazą danych!",
+                            MessageBoxButton.OKCancel,
+                            MessageBoxImage.Error
+                        )).Result == MessageBoxResult.Cancel)
+                {
+                    Environment.Exit(1);
+                }
+
+                var dbSettingsWindow = new DBSettingsView();
+
+                dbSettingsWindow.Closed += DbSettingsWindowConfigurationError_Closed;
+
+                dbSettingsWindow.ShowDialog();
+
+                dbSettingsWindow.Closed -= DbSettingsWindowConfigurationError_Closed;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        private async void DbSettingsWindowConfigurationError_Closed(object sender, EventArgs e)
+        {
+            if (IsDBSettingsChanged)
+            {
+                var metroWindow = Application.Current.MainWindow as MetroWindow;
+                await metroWindow.ShowMessageAsync(
+                    "Ustawienia zostały zapisane",
+                    $"Aplikacja zostanie uruchomiona ponownie.",
+                    MessageDialogStyle.Affirmative
+                );
+
+                System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
+                Application.Current.Shutdown();
+            }
+            else
+            {
+                Environment.Exit(1);
+            }
+        }
+
 
         private void DBSettings(object obj)
         {

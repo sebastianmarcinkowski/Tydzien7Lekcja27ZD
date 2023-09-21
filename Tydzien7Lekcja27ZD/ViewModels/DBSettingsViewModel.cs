@@ -18,7 +18,7 @@ namespace Tydzien7Lekcja27ZD.ViewModels
             _dbSettings.DBUser = Settings.Default.DBUser;
             _dbSettings.DBPassword = Settings.Default.DBPassword;
 
-            ConfirmCommand = new RelayCommand(Confirm);
+            ConfirmCommand = new RelayCommand(Confirm, CanConfirm);
             CloseCommand = new RelayCommand(Close);
         }
 
@@ -54,6 +54,11 @@ namespace Tydzien7Lekcja27ZD.ViewModels
 
             CloseWindow(obj as Window);
 
+        }
+
+        private bool CanConfirm(object obj)
+        {
+            return _dbSettings.IsValid;
         }
 
         private bool ConnectionStringTest()
