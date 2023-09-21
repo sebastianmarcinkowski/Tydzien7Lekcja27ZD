@@ -107,6 +107,7 @@
     <Compile Include="Models\Wrappers\GroupWrapper.cs" />
     <Compile Include="Models\Wrappers\StudentWrapper.cs" />
     <Compile Include="Repository.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="ViewModels\AddEditStudentViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />

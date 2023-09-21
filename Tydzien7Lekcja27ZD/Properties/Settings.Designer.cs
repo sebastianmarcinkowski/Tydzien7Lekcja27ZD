@@ -8,21 +8,78 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-
-namespace Tydzien7Lekcja27ZD.Properties
-{
+namespace Tydzien7Lekcja27ZD.Properties {
+    
+    
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "11.0.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
-    {
-
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.10.0.0")]
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-
-        public static Settings Default
-        {
-            get
-            {
+        
+        public static Settings Default {
+            get {
                 return defaultInstance;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("SMKI-PC")]
+        public string DBServerName {
+            get {
+                return ((string)(this["DBServerName"]));
+            }
+            set {
+                this["DBServerName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("SQLEXPRESS")]
+        public string DBInstanceName {
+            get {
+                return ((string)(this["DBInstanceName"]));
+            }
+            set {
+                this["DBInstanceName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("DiaryDB")]
+        public string DBName {
+            get {
+                return ((string)(this["DBName"]));
+            }
+            set {
+                this["DBName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("diarylogin")]
+        public string DBUser {
+            get {
+                return ((string)(this["DBUser"]));
+            }
+            set {
+                this["DBUser"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("diarylogin")]
+        public string DBPassword {
+            get {
+                return ((string)(this["DBPassword"]));
+            }
+            set {
+                this["DBPassword"] = value;
             }
         }
     }

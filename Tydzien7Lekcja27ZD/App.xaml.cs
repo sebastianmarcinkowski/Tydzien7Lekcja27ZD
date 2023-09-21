@@ -1,7 +1,7 @@
-﻿using System;
-using System.Windows.Threading;
-using MahApps.Metro.Controls;
+﻿using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
+using System;
+using System.Windows.Threading;
 
 namespace Tydzien7Lekcja27ZD
 {

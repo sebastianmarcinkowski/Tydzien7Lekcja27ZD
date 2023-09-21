@@ -1,7 +1,21 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Tydzien7Lekcja27ZD.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="DBServerName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SMKI-PC</Value>
+    </Setting>
+    <Setting Name="DBInstanceName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SQLEXPRESS</Value>
+    </Setting>
+    <Setting Name="DBName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">DiaryDB</Value>
+    </Setting>
+    <Setting Name="DBUser" Type="System.String" Scope="User">
+      <Value Profile="(Default)">diarylogin</Value>
+    </Setting>
+    <Setting Name="DBPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">diarylogin</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>
